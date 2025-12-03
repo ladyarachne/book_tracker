@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+
+{% block title %}Edit Book - Book Tracker{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="card shadow">
+            <div class="card-header bg-warning text-dark">
+                <h3 class="mb-0"><i class="bi bi-pencil-square"></i> Edit Book</h3>
+            </div>
+            <div class="card-body">
+                <form action="{{ url_for('books.edit_book', book_id=book.id) }}" method="POST">
+                    <!-- Title -->
+                    <div class="mb-3">
+                        <label for="title" class="form-label">
+                            Title <span class="text-danger">*</span>
+                        </label>
+                        <input type="text" 
+                               class="form-control" 
+                               id="title" 
+                               name="title" 
+                               placeholder="Enter book title"
+                               value="{{ book.title }}"
+                               required
+                               maxlength="200">
+                    </div>
+
+                    <!-- Author -->
+                    <div class="mb-3">
+                        <label for="author" class="form-label">
+                            Author <span class="text-danger">*</span>
+                        </label>
+                        <input type="text" 
+                               class="form-control" 
+                               id="author" 
+                               name="author" 
+                               placeholder="Enter author name"
+                               value="{{ book.author }}"
+                               required
+                               maxlength="100">
+                    </div>
+
+                    <!-- Genre -->
+                    <div class="mb-3">
+                        <label for="genre" class="form-label">
+                            Genre <span class="text-danger">*</span>
+                        </label>
+                        <input type="text" 
+                               class="form-control" 
+                               id="genre" 
+                               name="genre" 
+                               placeholder="e.g., Fiction, Non-Fiction, Science Fiction, Biography"
+                               value="{{ book.genre }}"
+                               required
+                               maxlength="50">
+                    </div>
+
+                    <!-- Year Published -->
+                    <div class="mb-3">
+                        <label for="year_published" class="form-label">
+                            Year Published <span class="text-danger">*</span>
+                        </label>
+                        <input type="number" 
+                               class="form-control" 
+                               id="year_published" 
+                               name="year_published" 
+                               placeholder="e.g., 2024"
+                               value="{{ book.year_published }}"
+                               required
+                               min="0"
+                               max="2025">
+                    </div>
+
+                    <!-- Description -->
+                    <div class="mb-3">
+                        <label for="description" class="form-label">
+                            Description
+                        </label>
+                        <textarea class="form-control" 
+                                  id="description" 
+                                  name="description" 
+                                  rows="4"
+                                  placeholder="Enter a brief description (optional)">{{ book.description if book.description }}</textarea>
+                        <div class="form-text">Optional field</div>
+                    </div>
+
+                    <!-- Metadata Info -->
+                    <div class="alert alert-info">
+                        <small>
+                            <strong><i class="bi bi-info-circle"></i> Book Information:</strong><br>
+                            Created: {{ book.created_at.strftime('%Y-%m-%d %H:%M:%S') }}<br>
+                            Last Updated: {{ book.updated_at.strftime('%Y-%m-%d %H:%M:%S') }}
+                        </small>
+                    </div>
+
+                    <!-- Buttons -->
+                    <div class="d-flex justify-content-between">
+                        <a href="{{ url_for('books.index') }}" class="btn btn-secondary">
+                            <i class="bi bi-arrow-left"></i> Cancel
+                        </a>
+                        <button type="submit" class="btn btn-warning">
+                            <i class="bi bi-save"></i> Update Book
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

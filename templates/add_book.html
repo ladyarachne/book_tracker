@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+
+{% block title %}Add Book - Book Tracker{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="card shadow">
+            <div class="card-header bg-primary text-white">
+                <h3 class="mb-0"><i class="bi bi-plus-circle"></i> Add New Book</h3>
+            </div>
+            <div class="card-body">
+                <form action="{{ url_for('books.add_book') }}" method="POST">
+                    <!-- Title -->
+                    <div class="mb-3">
+                        <label for="title" class="form-label">
+                            Title <span class="text-danger">*</span>
+                        </label>
+                        <input type="text" 
+                               class="form-control" 
+                               id="title" 
+                               name="title" 
+                               placeholder="Enter book title"
+                               required
+                               maxlength="200">
+                    </div>
+
+                    <!-- Author -->
+                    <div class="mb-3">
+                        <label for="author" class="form-label">
+                            Author <span class="text-danger">*</span>
+                        </label>
+                        <input type="text" 
+                               class="form-control" 
+                               id="author" 
+                               name="author" 
+                               placeholder="Enter author name"
+                               required
+                               maxlength="100">
+                    </div>
+
+                    <!-- Genre -->
+                    <div class="mb-3">
+                        <label for="genre" class="form-label">
+                            Genre <span class="text-danger">*</span>
+                        </label>
+                        <input type="text" 
+                               class="form-control" 
+                               id="genre" 
+                               name="genre" 
+                               placeholder="e.g., Fiction, Non-Fiction, Science Fiction, Biography"
+                               required
+                               maxlength="50">
+                    </div>
+
+                    <!-- Year Published -->
+                    <div class="mb-3">
+                        <label for="year_published" class="form-label">
+                            Year Published <span class="text-danger">*</span>
+                        </label>
+                        <input type="number" 
+                               class="form-control" 
+                               id="year_published" 
+                               name="year_published" 
+                               placeholder="e.g., 2024"
+                               required
+                               min="0"
+                               max="2025">
+                    </div>
+
+                    <!-- Description -->
+                    <div class="mb-3">
+                        <label for="description" class="form-label">
+                            Description
+                        </label>
+                        <textarea class="form-control" 
+                                  id="description" 
+                                  name="description" 
+                                  rows="4"
+                                  placeholder="Enter a brief description (optional)"></textarea>
+                        <div class="form-text">Optional field</div>
+                    </div>
+
+                    <!-- Buttons -->
+                    <div class="d-flex justify-content-between">
+                        <a href="{{ url_for('books.index') }}" class="btn btn-secondary">
+                            <i class="bi bi-arrow-left"></i> Cancel
+                        </a>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="bi bi-save"></i> Add Book
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
